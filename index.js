@@ -1,6 +1,8 @@
 import express from "express";
 import mongoose from "mongoose";
 import studentRouter from "./routes/studentRouter.js"
+import cors from "cors";
+
 const app = express();
 
 const PORT = process.env.PORT || 5000;
