@@ -1,6 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
-
+import studentRouter from "./routes/studentRouter.js"
 const app = express();
 
 const PORT = process.env.PORT || 5000;
@@ -19,6 +19,7 @@ app.get("/api/test", (req, res) => {
   res.json({ message: "Test API is working ✅" });
 });
 
+app.use("/students",studentRouter)
 if (!MONGO_URI) {
   console.error("❌ MONGO_URI is missing! do some thing");
   process.exit(1);
