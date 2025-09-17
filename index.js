@@ -11,6 +11,11 @@ if (!MONGO_URI) {
   process.exit(1);
 }
 
+
+app.get("/",(req,res)=>{
+    res.send("i am here to rule")
+})
+
 mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
