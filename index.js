@@ -6,15 +6,23 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI;
 
+// Middleware (to parse JSON requests)
+app.use(express.json());
+
+// Default route
+app.get("/", (req, res) => {
+  res.send("🚀 Backend is running with MongoDB!");
+});
+
+// Example API route
+app.get("/api/test", (req, res) => {
+  res.json({ message: "Test API is working ✅" });
+});
+
 if (!MONGO_URI) {
   console.error("❌ MONGO_URI is missing!");
   process.exit(1);
 }
-
-
-app.get("/",(req,res)=>{
-    res.send("i am here to rule")
-})
 
 mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
