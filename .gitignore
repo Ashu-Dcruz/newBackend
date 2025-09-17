@@ -1,0 +1,39 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# dotenv environment variables
+.env
+.env.*   # e.g. .env.production, .env.local
+
+# Logs
+logs/
+*.log
+logs/*.log
+pids
+*.pid
+*.seed
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+
+# Optional: build output
+dist/
+build/
+
+# Optional: If using coverage tools like nyc or jest
+coverage/
+
+# Optional: If using nodemon
+nodemon-debug.log
+
+# Optional: railway CLI cache
+.railway/
