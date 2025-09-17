@@ -20,7 +20,7 @@ app.get("/api/test", (req, res) => {
 });
 
 if (!MONGO_URI) {
-  console.error("❌ MONGO_URI is missing!");
+  console.error("❌ MONGO_URI is missing! do some thing");
   process.exit(1);
 }
 
