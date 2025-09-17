@@ -1,24 +1,37 @@
-// index.js or app.js
-
-import express from 'express';
-import connectDB from './utils/connectDB.js'; // Note the .js extension
-import cors from "cors";
-import dotenv from 'dotenv';
-dotenv.config();  // Load environment variables
+import express from "express";
+import mongoose from "mongoose";
 
 const app = express();
-app.use(cors())
 
-// Connect to MongoDB
-connectDB();
+const PORT = process.env.PORT || 5000;
+const MONGO_URI = process.env.MONGO_URI;
 
-// Your other middleware, routes, and logic
-app.get('/', (req, res) => {
-  res.send('Hello, world!');
+// Middleware (to parse JSON requests)
+app.use(express.json());
+
+// Default route
+app.get("/", (req, res) => {
+  res.send("🚀 Backend is running with MongoDB!");
 });
 
-// Listen to the server
-const port = process.env.PORT || 5000;
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+// Example API route
+app.get("/api/test", (req, res) => {
+  res.json({ message: "Test API is working ✅" });
+});
+
+if (!MONGO_URI) {
+  console.error("❌ MONGO_URI is missing!");
+  process.exit(1);
+}
+
+mongoose.connect(MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => {
+  console.log("✅ MongoDB connected");
+  app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+})
+.catch((err) => {
+  console.error("❌ MongoDB connection error:", err.message);
 });
